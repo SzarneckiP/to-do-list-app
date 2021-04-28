@@ -1,0 +1,16 @@
+{
+  "name": "to-do-list-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:SzarneckiP/to-do-list-app.git",
+  "author": "SzarneckiP <siarniuk@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "socket.io": "^4.0.1"
+  }
+}
