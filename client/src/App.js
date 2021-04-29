@@ -1,5 +1,6 @@
 import React from 'react';
 import io from 'socket.io-client';
+import { v4 as uuidv4 } from 'uuid';
 
 class App extends React.Component {
 
@@ -9,12 +10,15 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.socket = io('localhost:8000', { transports: ['websocket', 'polling', 'flashsocket'] });
+    this.socket = io('localhost:8000', { transports: ['websocket'] });
     this.socket.on('removeTask', delTask => {
       this.removeTask(delTask);
     });
     this.socket.on('addTask', task => {
       this.addTask(task);
+    });
+    this.socket.on('updateData', updateData => {
+      this.updateTask(updateData);
     });
   };
 
@@ -27,13 +31,17 @@ class App extends React.Component {
 
   submitForm = (event) => {
     event.preventDefault();
-    const taskName = { name: this.state.taskName };
+    const taskName = { name: this.state.taskName, id: uuidv4() };
     this.addTask(taskName);
     this.socket.emit('addTask', taskName);
   };
 
   addTask = (task) => {
     this.setState({ tasks: [...this.state.tasks, task] })
+  };
+
+  updateTask = (updateData) => {
+    this.setState({ tasks: updateData })
   };
 
   render() {
