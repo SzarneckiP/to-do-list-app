@@ -1,2 +1,2 @@
-# to-do-list-app Heroku:
-https://powerful-bastion-68613.herokuapp.com/
+What I done and used in APP:
+- To-Do-List with socket.io -> server
